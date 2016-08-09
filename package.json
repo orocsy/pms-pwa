@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-webserver": "^0.9.1",
     "sw-cache": "^0.1.2",
     "sw-precache": "^4.0.0"
   }
