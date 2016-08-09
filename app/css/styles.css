@@ -1,0 +1,250 @@
+header {
+  background-color:#d3d3d3;
+}
+.header-left-section {
+  padding-right:0px; 
+  padding-left:0px;
+}
+.header-left-section ul li {
+  line-height:35px;
+}
+.header-title {
+  font-size:16px;
+  padding-left: 15px;
+}
+.header-right-section ul li{
+  font-size:12px;
+  line-height:35px;
+}
+.content-left-section {
+  padding-right:0px; 
+  padding-left:0px;
+  border: 1px solid #cccccc;
+}
+.sub-header {
+  background-color:#e6e6e6;
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+.graph-container {
+  padding-top:10px; 
+  padding-bottom:10px;
+}
+.todo-container {
+  padding-bottom : 20px;
+  background-color:#e6e6e6;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.todo-item-container {
+  padding-bottom: 15px;
+  padding-left: 0px;
+  padding-right:0px;
+}
+.todo-item-container .todo-item {
+  background-color:#ffffff;
+}
+.todo-item-container .todo-item div:nth-of-type(2) {
+  padding-top : 10px;
+  text-align: right;
+}
+.todo-heading {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 3px;
+}
+.todo-item {
+  padding: 5px;
+}
+.todo-item-right .btn, .todo-item-right span{
+  font-size: 12px;
+}
+.btn-orange {
+  background-color: #e8bc00;
+  border-color: #e8bc00;
+  color:#ffffff;
+}
+.btn-grey {
+  background-color: #6a727b;
+  border-color: #6a727b;
+  color:#ffffff;
+}
+.btn-dark-grey {
+  background-color: #35393c;
+  border-color: #35393c;
+  color:#ffffff;
+}
+.danger-txt {
+  color:#d82043;
+}
+.rx-today-container {
+  padding-top: 40px;
+}
+.rx-today {
+  font-size: 36px;
+}
+.ex-small-txt {
+  font-size: 10px;
+}
+.lgnd-container div {
+  line-height: 70%;
+}
+.sub-heading-txt {
+  font-size: 16px;
+}
+.back-arrow {
+  padding-right: 10px;
+}
+.pr30 {
+  padding-right: 30px;
+}
+.steps-container ul {
+  width:100%;
+}
+.steps-container ul li{
+  font-size: 10px;
+  width :32%;
+  text-align:center;
+  margin-right: 2px;
+}
+.steps-container ul li.active {
+  color:#ffffff;
+  background-color:#3da544;
+}
+.steps-container ul li.inactive {
+  color:#ffffff;
+  background-color:#91c591;
+}
+.profile-container li {
+  background-color: #ffffff;
+  margin-right: 2px;
+  line-height:24px;
+}
+.de-content-footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color:#d3d3d3;
+}
+.de-content-section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.de-content-footer ul li {
+  border:1px solid #000000;
+  background-color: #ffffff;
+  margin-right: 10px;
+}
+.de-content-footer ul li.separator {
+  border:none;
+  background-color: #d3d3d3;
+}
+.de-content-footer div:nth-of-type(3) {
+  padding-top: 8px;
+}
+ul.custom-pager  li {
+  margin-right:2px;
+}
+.pres-dls-container div.row {
+  margin-bottom: 10px;
+}
+a.de-lnk {
+  color:#000000;
+}
+a.de-lnk:hover {
+  text-decoration: none;
+}
+.modal-body h5 {
+  margin-bottom: 30px;
+}
+.modal-body div {
+  margin-bottom: 5px;
+}
+.pckup-btn {
+  width:100px;
+}
+.pkup-msg {
+  padding-left: 0px;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus, .btn:hover {
+  outline: none;
+  color:#ffffff;
+}
+
+
+/* chart */
+.footer {
+  background-color:#333333;
+  color:white;
+  padding-top:15px;
+}
+
+.chart-banner {
+  background-color:rgba(0, 140, 186, 0.3);
+  padding-top:25px;
+  margin-bottom:15px;
+  border-top:1px solid #666666;
+  border-bottom:1px solid #cccccc;
+}
+
+.tc-chart-js-legend {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.tc-chart-js-legend li {
+  display: block;
+  float: left;
+  clear:both;
+  padding:10px;
+}
+.tc-chart-js-legend li span {
+  width:25px;
+  height:25px;
+  display:block;
+  float:left;
+  margin-right:10px;
+}
+.has-error {
+  border: 1px solid red;
+}
+.custom-well {
+  padding:30px;
+}
+.btn-green {
+  background-color: #3da544;
+  border-color: #3da544;
+}
+.tooltip {
+  width : 260px;
+}
+.tooltip-inner {
+  max-width: 260px;
+  background-color: #666666;
+}
+.tooltip.right .tooltip-arrow {
+  border-right-color: #666666;
+}
+
+.de-tooltip > div {
+  padding-top: 10px;
+}
+.de-tooltip .circle-value {
+  border:1px solid #ffffff;
+}
+.circle-value1 {
+  background-color:#2b7baf;
+}
+.circle-value2 {
+  background-color:#00aad6;
+}
+.circle-value3 {
+  background-color:#e7bb0e;
+}
+.btn-white {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color:#e7bb0e;
+}
+.hide-todo-item {
+  display :none;
+}

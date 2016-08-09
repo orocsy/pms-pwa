@@ -1,0 +1,23 @@
+{
+  "name": "pms-html",
+  "version": "1.0.0",
+  "description": "progressive web app transformation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "progressive",
+    "web",
+    "apps",
+    "on",
+    "PMS"
+  ],
+  "author": "Shiyu Cai",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "sw-cache": "^0.1.2",
+    "sw-precache": "^4.0.0"
+  }
+}

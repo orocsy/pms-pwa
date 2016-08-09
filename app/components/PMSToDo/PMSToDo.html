@@ -1,0 +1,46 @@
+<div class="col-md-3 col-sm-3 col-lg-3 todo-container">
+        <div class="row"><h4>To do next</h4></div>
+        <div class="row todo-item-container" ng-repeat="toDo in toDoVm.toDos" ng-class="{'hide-todo-item' : toDo.status=='arrived in store'}">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 todo-heading">
+                      <div class="row">
+                          <div class="col-md-8 col-sm-8 col-lg-8">
+                            <strong>{{toDo.title}}</strong> <strong ng-if="toDo.total">({{toDo.completed}}/{{toDo.total}})</strong> 
+                          </div>
+                          <div class="col-md-4 col-sm-4 col-lg-4 text-right">
+                            <span ng-if="toDo.function">{{toDo.function}}</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-lg-12 todo-item" ng-if="toDo.title!='Clinical Services'">
+                      <div class="row">
+                        <div class="col-md-5 col-sm-5 col-lg-5">
+                          {{toDo.firstname}} {{toDo.lastname}}
+                          {{toDo.rxno}}
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-lg-7 todo-item-right">
+                          <button type="button" class="btn btn-orange btn-blnk" ng-if="toDo.status=='arrived in store'"><img src="images/triangle.png" id="img-blnk"> {{toDo.status}}</button>
+                          <span class="text-danger" ng-if="toDo.status=='waiting'"><img src="images/diamond.png" width="14" height="12"> <span class="danger-txt">{{toDo.status}}</span></span>
+                          <button type="button" class="btn btn-grey" ng-if="toDo.status=='Scan'">{{toDo.status}}</button>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-lg-12 todo-item" ng-if="toDo.title=='Clinical Services'" ng-repeat="cs in toDo.ClinicalServices">
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                          {{cs.firstname}} {{cs.lastname}}
+                          {{cs.rxno}}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-6 todo-item-right">
+                          <small><i>{{cs.status}}</i></small>
+                        </div>
+                      </div>
+                  </div>
+
+              </div>
+            </div>
+        </div>
+</div>

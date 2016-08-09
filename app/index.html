@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PMS - Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    
+  </head>
+  <body class="container-fluid" ng-app="PMSApp">
+    <pms-header></pms-header>
+    <div ui-view></div>
+
+    <script>
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('service-worker.js').then(function (reg) {
+          console.log(reg);
+        })
+      }
+    </script>
+    <!-- 3rd party library -->
+    <script src="components/lib/vendor/angular.js"></script>
+    <script src="components/lib/vendor/angular-ui-router.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="components/lib/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="components/lib/vendor/bootstrap.min.js"></script>
+
+    <script src="components/lib/vendor/moment.min.js"></script>
+    <script src="components/lib/vendor/chart.js"></script>
+    <script src="components/lib/vendor/tc-angular-chartjs.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Dashboard page -->
+    <script src="DashboardPage/DashboardPage-controller.js"></script>
+    <script src="DashboardPage/DashboardPage-service.js"></script>
+    <script src="components/PMSHeader/PMSHeader-directive.js"></script>
+    <script src="components/PMSHeader/PMSHeader-controller.js"></script>
+    <script src="components/PMSSearchBar/PMSSearchBar-directive.js"></script>
+    <script src="components/PMSSearchBar/PMSSearchBar-controller.js"></script>
+    <script src="components/PMSToDo/PMSToDo-directive.js"></script>
+    <script src="components/PMSToDo/PMSToDo-controller.js"></script>
+
+    <script src="components/PMSAssembled/PMSAssembled-directive.js"></script>
+    <script src="components/PMSAssembled/PMSAssembled-controller.js"></script>
+    <script src="components/PMSClinicalCheck/PMSClinicalCheck-directive.js"></script>
+    <script src="components/PMSClinicalCheck/PMSClinicalCheck-controller.js"></script>
+    <script src="components/PMSClinicalServices/PMSClinicalServices-directive.js"></script>
+    <script src="components/PMSClinicalServices/PMSClinicalServices-controller.js"></script>
+    <script src="components/PMSConsultation/PMSConsultation-directive.js"></script>
+    <script src="components/PMSConsultation/PMSConsultation-controller.js"></script>
+    <script src="components/PMSDataEntry/PMSDataEntry-directive.js"></script>
+    <script src="components/PMSDataEntry/PMSDataEntry-controller.js"></script>
+    <script src="components/PMSDataReview/PMSDataReview-directive.js"></script>
+    <script src="components/PMSDataReview/PMSDataReview-controller.js"></script>
+    <script src="components/PMSIe/PMSIe-directive.js"></script>
+    <script src="components/PMSIe/PMSIe-controller.js"></script>
+    <script src="components/PMSProductReview/PMSProductReview-directive.js"></script>
+    <script src="components/PMSProductReview/PMSProductReview-controller.js"></script>
+    <script src="components/PMSRa/PMSRa-directive.js"></script>
+    <script src="components/PMSRa/PMSRa-controller.js"></script>
+    <script src="components/PMSRxInProgress/PMSRxInProgress-directive.js"></script>
+    <script src="components/PMSRxInProgress/PMSRxInProgress-controller.js"></script>
+    <script src="components/PMSTph/PMSTph-directive.js"></script>
+    <script src="components/PMSTph/PMSTph-controller.js"></script>
+    <script src="components/PMSPickupPreference/PMSPickupPreference-directive.js"></script>
+    <script src="components/PMSPickupPreference/PMSPickupPreference-controller.js"></script>
+
+
+
+    <!-- Prescription data entry page -->
+    <script src="DataEntryPage/DataEntryPage-controller.js"></script>
+
+
+  </body>
+</html>

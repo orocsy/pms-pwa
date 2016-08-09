@@ -1,0 +1,205 @@
+<div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12 sub-header">
+        <div class="row">
+          <div class="col-md-2">
+              <span class="back-arrow"><a href="#/"><img src="images/back.png" width="20" height="20"></a></span>
+              <span class="sub-heading-txt"><strong>Prescription Entry</strong></span>
+          </div>
+          <div class="col-md-7 col-sm-7 col-lg-7 profile-container">
+            <ul class="nav navbar-nav navbar-right list-inline">
+               <li>{{dataEntryVm.firstName}} {{dataEntryVm.lastName}}</li>
+               <li>{{dataEntryVm.gender}}</li>
+               <li>{{dataEntryVm.dob}}</li>
+               <li>{{dataEntryVm.age}}</li>
+               <li>{{dataEntryVm.address}}</li>
+               <li>{{dataEntryVm.phoneNo}}</li>
+               <li><img src="images/add-presc.png" width="20" height="20"></li>
+            </ul>
+          </div>
+          <div class="col-md-3  col-sm-3 col-lg-3 pr30 steps-container">
+            <ul class="nav navbar-nav navbar-right list-inline">
+               <li class="active">Rx</li>
+               <li class="inactive">Prescriber</li>
+               <li class="inactive">Payment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <form name="form" role="form" novalidate>
+      <div class="col-md-12 col-sm-12 col-lg-12 de-content-section">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6" id="rx-image">
+               <div class="panel panel-default">
+                  <div class="panel-heading"><strong class="sub-heading-txt">Rx Image</strong></div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4 col-lg-4">&nbsp;</div>
+                      <div class="col-md-4 col-sm-4 col-lg-4">ID# {{dataEntryVm.idNo}}</div>
+                      <div class="col-md-4 col-sm-4 col-lg-4">
+                        <ul class="nav navbar-nav navbar-center list-inline custom-pager">
+                           <li>{{dataEntryVm.currentIndex+1}}/{{dataEntryVm.rxImages.length}}</li>
+                           <li><img src="images/prev.png" width="20" height="20" ng-click="dataEntryVm.prev()"></li>
+                           <li><img src="images/next.png" width="20" height="20" ng-click="dataEntryVm.next()"></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="row" ng-repeat="img in dataEntryVm.rxImages" ng-show="img.visible">
+                      <div class="col-md-12 col-sm-12 col-lg-12">
+                        <img src="{{img.img}}" width="100%" height="100%">
+                      </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 pres-dls-container">
+              <div class="panel panel-default">
+                <div class="panel-heading"><strong class="sub-heading-txt">Prescription Details</strong></div>
+                <div class="panel-body">
+                  
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                      <label for="rx-no">Rx #</label>
+                      <input type="text" class="form-control" name="rxNo" ng-model="dataEntryVm.payLoad.rxNo" id="rx-no" required ng-class="{'has-error':dataEntryVm.submitted && form.rxNo.$invalid}">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                      <label></label>
+                      <input type="text" name="x" ng-model="dataEntryVm.payLoad.x" class="form-control" required ng-class="{'has-error':dataEntryVm.submitted && form.x.$invalid}">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4" style="display:none;">
+                        <!--<label for="last-refill-date">Last Refill Date</label>
+                        <input type="text" class="form-control" id="last-refill-date" name="refillDate" ng-model="dataEntryVm.payLoad.refillDate" required ng-class="{'has-error':dataEntryVm.submitted && form.refillDate.$invalid}">-->
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                        <label>Drug Type</label>
+                        <select class="form-control" id="drug-type" name="drugType" ng-model="dataEntryVm.payLoad.drugType" required ng-class="{'has-error':dataEntryVm.submitted && form.drugType.$invalid}">
+                          <option value="">--Select--</option>
+                          <option value="Drug Id">Drug Id</option>
+                          <option value="Non-System Drug">Non-System Drug</option>
+                          <option value="Compound Drug">Compound Drug</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-lg-8">
+                      <label for="drug-name">Drug Name</label>
+                      <input type="text" class="form-control" id="drug-name" name="drugName" ng-model="dataEntryVm.payLoad.drugName" required ng-class="{'has-error':dataEntryVm.submitted && form.drugName.$invalid}">
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-8 col-sm-8 col-lg-8">
+                        <label id="mfg">Manufacturer</label>
+                        <input type="text" class="form-control" id="mfg" name="mfg" ng-model="dataEntryVm.payLoad.mfg" required ng-class="{'has-error':dataEntryVm.submitted && form.mfg.$invalid}">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                      <label for="orange-book">Orange Book</label>
+                      <input type="text" class="form-control" id="orange-book" name="orangeBook" ng-model="dataEntryVm.payLoad.orangeBook" required ng-class="{'has-error':dataEntryVm.submitted && form.orangeBook.$invalid}">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                        <label id="drug-exp">Drug Expires</label>
+                        <input type="text" class="form-control" id="drug-exp" name="drugExp" ng-model="dataEntryVm.payLoad.drugExp" required ng-class="{'has-error':dataEntryVm.submitted && form.drugExp.$invalid}">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="daw">DAW</label>
+                      <select class="form-control" id="daw" name="daw" ng-model="dataEntryVm.payLoad.daw" required ng-class="{'has-error':dataEntryVm.submitted && form.daw.$invalid}">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="substitute">Substitute</label>
+                      <select class="form-control" id="substitute" name="substitute" ng-model="dataEntryVm.payLoad.substitute" required ng-class="{'has-error':dataEntryVm.submitted && form.substitute.$invalid}">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                        <label id="qty">Qty</label>
+                        <input type="text" class="form-control" id="qty" name="qty" ng-model="dataEntryVm.payLoad.qty" required ng-class="{'has-error':dataEntryVm.submitted && form.qty.$invalid}" ng-change="dataEntryVm.qtyRem()">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="qty-dis">Qty Dispnsed</label>
+                      <input type="text" class="form-control" id="qty-dis" name="qtyDis" ng-model="dataEntryVm.payLoad.qtyDis" required ng-class="{'has-error':dataEntryVm.submitted && form.qtyDis.$invalid}" ng-change="dataEntryVm.qtyRem()">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="qty-rem">Qty Rem</label>
+                      <input type="text" class="form-control" id="qty-rem" name="qtyRem" ng-model="dataEntryVm.payLoad.qtyRem" required ng-class="{'has-error':dataEntryVm.submitted && form.qtyRem.$invalid}">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                      <label for="directions">Directions</label>
+                      <textarea class="form-control" id="directions" name="directions" ng-model="dataEntryVm.payLoad.directions" required ng-class="{'has-error':dataEntryVm.submitted && form.directions.$invalid}"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                        <label id="days-supply">Days Supply</label>
+                        <input type="text" class="form-control" id="days-supply" name="daysSupply" ng-model="dataEntryVm.payLoad.daysSupply" required ng-class="{'has-error':dataEntryVm.submitted && form.daysSupply.$invalid}">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="refills">Refills</label>
+                      <input type="text" class="form-control" id="refills" name="refills" ng-model="dataEntryVm.payLoad.refills" required ng-class="{'has-error':dataEntryVm.submitted && form.refills.$invalid}">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                      <label for="refills-bfr">Refills before</label>
+                      <input type="text" class="form-control" id="refills-bfr" name="refillsBfr" ng-model="dataEntryVm.payLoad.refillsBfr" required ng-class="{'has-error':dataEntryVm.submitted && form.refillsBfr.$invalid}">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-lg-3">
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-md-12  col-sm-12 col-lg-12 de-content-footer">
+        <div class="col-md-1 col-sm-1 col-lg-1">
+          <span class="glyphicon glyphicon-question-sign" style="font-size:48px"></span>
+        </div>
+        <div class="col-md-8 col-sm-8 col-lg-8">
+          <!-- <ul class="list-inline">
+            <li><img src="images/img-tool1.png" width="40" height="40"></li>
+            <li><img src="images/img-tool2.png" width="40" height="40"></li>
+            <li><img src="images/img-tool3.png" width="40" height="40"></li>
+            <li><img src="images/img-tool4.png" width="40" height="40"></li>
+            <li><img src="images/img-tool5.png" width="40" height="40"></li>
+            <li><img src="images/img-tool6.png" width="40" height="40"></li>
+            <li><img src="images/img-tool7.png" width="40" height="40"></li>
+            <li><img src="images/img-tool8.png" width="40" height="40"></li>
+            <li class="separator"><img src="images/line.png"></li>
+          </ul> -->
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 text-right">
+          <button type="button" class="btn btn-grey">Cancel</button>
+          <input type="submit" class="btn btn-dark-grey" value="Next" ng-click="dataEntryVm.addDataEntry(form)">
+        </div>
+      </div>
+      </form>
+    </div>
+
+    <div id="thx-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="custom-well">
+            <p class="text-success text-center">{{dataEntryVm.postRes}}</p>
+          </div>
+        </div>
+      </div>
+    </div>

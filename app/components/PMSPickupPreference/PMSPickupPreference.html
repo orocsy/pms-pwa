@@ -1,0 +1,81 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><strong>Pick-Up Preferences</strong></h4>
+        </div>
+        <div class="modal-body">
+          <h5><strong>What time would you like to pick up the prescription(s)?</strong></h5>
+
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-lg-10 col-lg-offset-2">
+              <p class="text-danger text-left" ng-if="preferenceVm.submitted && !preferenceVm.payLoad.selection">Please select the pickup options</p>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-lg-3 col-lg-offset-2">
+              <button type="button" class="btn btn-grey pckup-btn" ng-click="preferenceVm.setSelection('Waiting')" ng-class="{'btn-green' : preferenceVm.payLoad.selection == 'Waiting'}">Waiting</button>
+            </div>
+            <div class="col-md-7 col-sm-7 col-lg-7 pkup-msg">
+              <span>Ready for pick-up after {{preferenceVm.waitingTime}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-lg-3 col-lg-offset-2">
+              <button type="button" class="btn btn-grey pckup-btn" ng-click="preferenceVm.setSelection('Later Today')" ng-class="{'btn-green' : preferenceVm.payLoad.selection == 'Later Today'}">Later Today</button>
+            </div>
+            <div class="col-md-7 col-sm-7 col-lg-7 pkup-msg">
+              <span>Ready for pick-up after {{preferenceVm.todayTime}}</span>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-lg-3 col-lg-offset-2">
+              <button type="button" class="btn btn-grey pckup-btn" ng-click="preferenceVm.setSelection('Tommorow')" ng-class="{'btn-green' : preferenceVm.payLoad.selection == 'Tommorow'}">Tommorow</button>
+            </div>
+            <div class="col-md-7 col-sm-7 col-lg-7 pkup-msg">
+              <span>Ready for pick-up tomorrow after {{preferenceVm.tomorrowTime}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-lg-3 col-lg-offset-2">
+              <button type="button" class="btn btn-grey pckup-btn" ng-click="preferenceVm.setSelection('Delivery')" ng-class="{'btn-green' : preferenceVm.payLoad.selection == 'Delivery'}">Delivery</button>
+            </div>
+            <div class="col-md-7 col-sm-7 col-lg-7 pkup-msg">
+              <span>Prescription should be delivered</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-lg-10 col-lg-offset-2">
+              <label for="comments">Comments</label>
+              <textarea class="form-control" id="comments" name="comments" rows="5" ng-model="preferenceVm.payLoad.comments" ng-class="{'has-error' : preferenceVm.submitted && !preferenceVm.payLoad.comments}"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-grey">Alternate Location</button>
+          <button type="button" class="btn btn-dark-grey" ng-click="preferenceVm.setPreference(pkup-pref-form)">Ok</button>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+<div id="pckp-thx-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="custom-well">
+            <p class="text-success text-center">{{preferenceVm.postRes}}</p>
+          </div>
+        </div>
+      </div>
+</div>
