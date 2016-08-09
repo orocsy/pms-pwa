@@ -6,7 +6,7 @@
 
     function pmsHeader() {
         var directive = {
-            templateUrl: 'components/PMSHeader/PMSHeader.html?b',
+            templateUrl: 'components/PMSHeader/PMSHeader.html',
             controller: 'pmsHeaderCtrl',
             controllerAs: 'headerVm',
             restrict: 'E',

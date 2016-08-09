@@ -6,7 +6,7 @@
 
     function pmsClinicalServices() {
         var directive = {
-            templateUrl: 'components/PMSClinicalServices/PMSClinicalServices.html?6789',
+            templateUrl: 'components/PMSClinicalServices/PMSClinicalServices.html',
             controller: 'pmsClinicalServicesCtrl',
             controllerAs: 'pmsClinicalServicesVm',
             restrict: 'E',

@@ -6,7 +6,7 @@
 
     function pmsSearchBar() {
         var directive = {
-            templateUrl: 'components/PMSSearchBar/PMSSearchBar.html?d',
+            templateUrl: 'components/PMSSearchBar/PMSSearchBar.html',
             controller: 'pmsSearchBarCtrl',
             controllerAs: 'searchBarVm',
             restrict: 'E',

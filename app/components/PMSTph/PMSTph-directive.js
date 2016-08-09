@@ -6,7 +6,7 @@
 
     function pmsTph() {
         var directive = {
-            templateUrl: 'components/PMSTph/PMSTph.html?6789',
+            templateUrl: 'components/PMSTph/PMSTph.html',
             controller: 'pmsTphCtrl',
             controllerAs: 'pmsTphVm',
             restrict: 'E',

@@ -6,7 +6,7 @@
 
     function pmsPickupPreference() {
         var directive = {
-            templateUrl: 'components/PMSPickupPreference/PMSPickupPreference.html?b',
+            templateUrl: 'components/PMSPickupPreference/PMSPickupPreference.html',
             controller: 'pmsPickupPreferenceCtrl',
             controllerAs: 'preferenceVm',
             restrict: 'E',

@@ -6,7 +6,7 @@
 
     function pmsAssembled() {
         var directive = {
-            templateUrl: 'components/PMSAssembled/PMSAssembled.html?6789',
+            templateUrl: 'components/PMSAssembled/PMSAssembled.html',
             controller: 'pmsAssembledCtrl',
             controllerAs: 'pmsAssembledVm',
             restrict: 'E',

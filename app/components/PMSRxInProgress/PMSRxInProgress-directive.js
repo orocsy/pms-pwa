@@ -6,7 +6,7 @@
 
     function pmsRxInProgress() {
         var directive = {
-            templateUrl: 'components/PMSRxInProgress/PMSRxInProgress.html?c',
+            templateUrl: 'components/PMSRxInProgress/PMSRxInProgress.html',
             controller: 'pmsRxInProgressCtrl',
             controllerAs: 'pmsRxInProgressVm',
             restrict: 'E',

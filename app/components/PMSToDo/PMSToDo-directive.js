@@ -6,7 +6,7 @@
 
     function pmsToDo() {
         var directive = {
-            templateUrl: 'components/PMSToDo/PMSToDo.html?67896',
+            templateUrl: 'components/PMSToDo/PMSToDo.html',
             controller: 'pmsToDoCtrl',
             controllerAs: 'toDoVm',
             restrict: 'E',

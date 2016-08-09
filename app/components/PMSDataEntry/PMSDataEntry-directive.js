@@ -6,7 +6,7 @@
 
     function pmsDataEntry() {
         var directive = {
-            templateUrl: 'components/PMSDataEntry/PMSDataEntry.html?6789',
+            templateUrl: 'components/PMSDataEntry/PMSDataEntry.html',
             controller: 'pmsDataEntryCtrl',
             controllerAs: 'pmsDataEntryVm',
             restrict: 'E',

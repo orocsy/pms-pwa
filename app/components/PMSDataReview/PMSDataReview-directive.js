@@ -6,7 +6,7 @@
 
     function pmsDataReview() {
         var directive = {
-            templateUrl: 'components/PMSDataReview/PMSDataReview.html?6789',
+            templateUrl: 'components/PMSDataReview/PMSDataReview.html',
             controller: 'pmsDataReviewCtrl',
             controllerAs: 'pmsDataReviewVm',
             restrict: 'E',

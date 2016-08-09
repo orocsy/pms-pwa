@@ -6,7 +6,7 @@
 
     function pmsProductReview() {
         var directive = {
-            templateUrl: 'components/PMSProductReview/PMSProductReview.html?6789',
+            templateUrl: 'components/PMSProductReview/PMSProductReview.html',
             controller: 'pmsProductReviewCtrl',
             controllerAs: 'pmsProductReviewVm',
             restrict: 'E',

@@ -6,7 +6,7 @@
 
     function pmsConsultation() {
         var directive = {
-            templateUrl: 'components/PMSConsultation/PMSConsultation.html?6789',
+            templateUrl: 'components/PMSConsultation/PMSConsultation.html',
             controller: 'pmsConsultationCtrl',
             controllerAs: 'pmsConsultationVm',
             restrict: 'E',

@@ -6,7 +6,7 @@
 
     function pmsRa() {
         var directive = {
-            templateUrl: 'components/PMSRa/PMSRa.html?6789',
+            templateUrl: 'components/PMSRa/PMSRa.html',
             controller: 'pmsRaCtrl',
             controllerAs: 'pmsRaVm',
             restrict: 'E',

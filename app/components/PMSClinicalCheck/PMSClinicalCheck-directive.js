@@ -6,7 +6,7 @@
 
     function pmsClinicalCheck() {
         var directive = {
-            templateUrl: 'components/PMSClinicalCheck/PMSClinicalCheck.html?6789',
+            templateUrl: 'components/PMSClinicalCheck/PMSClinicalCheck.html',
             controller: 'pmsClinicalCheckCtrl',
             controllerAs: 'pmsClinicalCheckVm',
             restrict: 'E',
