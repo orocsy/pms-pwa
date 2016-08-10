@@ -6,7 +6,7 @@
 
     function pmsIe() {
         var directive = {
-            templateUrl: 'components/PMSIe/PMSIe.html?6789',
+            templateUrl: 'components/PMSIe/PMSIe.html',
             controller: 'pmsIeCtrl',
             controllerAs: 'pmsIeVm',
             restrict: 'E',

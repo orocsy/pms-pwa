@@ -4,8 +4,7 @@
 'use strict';
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
-gulp.task('default',['generate-service-worker','webserver'],function () {
-    console.log('server started at 3400');
+gulp.task('default',['webserver','generate-service-worker'],function () {
 });
 gulp.task('generate-service-worker', function(callback) {
     var path = require('path');
@@ -13,16 +12,16 @@ gulp.task('generate-service-worker', function(callback) {
     var rootDir = 'app';
 //'/**/*.{js,html,css}', rootDir + '/images/**.*'
     swPrecache.write(path.join(rootDir, '/service-worker.js'), {
-        staticFileGlobs:[rootDir + '/**/*.{js,css,html,png,jpg}'],
+        staticFileGlobs:[rootDir + '/**/*.{js,css,html,png,jpg,json}'],
         stripPrefix: rootDir
     }, callback);
 });
 
 gulp.task('webserver', function() {
-    gulp.src('/app')
+    gulp.src('./app')
         .pipe(webserver({
-            livereload: true,
-            directoryListing: true,
+            livereload:true,
+            directoryListing:false,
             port:3400
         }));
 });
