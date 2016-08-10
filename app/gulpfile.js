@@ -9,7 +9,7 @@ gulp.task('default',['webserver','generate-service-worker'],function () {
 gulp.task('generate-service-worker', function(callback) {
     var path = require('path');
     var swPrecache = require('sw-precache');
-    var rootDir = 'app';
+    var rootDir = './';
 //'/**/*.{js,html,css}', rootDir + '/images/**.*'
     swPrecache.write(path.join(rootDir, '/service-worker.js'), {
         staticFileGlobs:[rootDir + '/**/*.{js,css,html,png,jpg,json}'],
@@ -18,7 +18,7 @@ gulp.task('generate-service-worker', function(callback) {
 });
 
 gulp.task('webserver', function() {
-    gulp.src('./app')
+    gulp.src('./')
         .pipe(webserver({
             livereload:true,
             directoryListing:false,
