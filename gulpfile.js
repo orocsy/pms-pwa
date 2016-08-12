@@ -4,7 +4,7 @@
 'use strict';
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
-gulp.task('default',['webserver','generate-service-worker'],function () {
+gulp.task('default',['generate-service-worker','webserver'],function () {
 });
 gulp.task('generate-service-worker', function(callback) {
     var path = require('path');
@@ -12,11 +12,11 @@ gulp.task('generate-service-worker', function(callback) {
     var rootDir = 'app';
 //'/**/*.{js,html,css}', rootDir + '/images/**.*'
     swPrecache.write(path.join(rootDir, '/service-worker.js'), {
-        staticFileGlobs:[rootDir + '/**/*.{js,css,html,png,jpg}'],
-        // stripPrefix: rootDir,
+        staticFileGlobs:[rootDir + '/**/*.{js,css,html,png,jpg,eot,svg,ttf,woff,woff2}'],
+        stripPrefix: rootDir,
         runtimeCaching:[
             {
-                urlPattern:'$profile.json',
+                urlPattern:'^https:\/\/demo0434460.mockable.io\/',
                 handler:'cacheFirst',
                 options:{
                     cache:{
@@ -30,7 +30,7 @@ gulp.task('generate-service-worker', function(callback) {
 });
 
 gulp.task('webserver', function() {
-    gulp.src('./app')
+    gulp.src('app')
         .pipe(webserver({
             livereload:true,
             directoryListing:false,
