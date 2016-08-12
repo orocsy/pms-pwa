@@ -140,7 +140,7 @@
                   ],
               } ],
               labels: [
-                  
+
               ]
             };
 
@@ -163,7 +163,7 @@
 
         function addText() {
           var canvas = document.getElementById("data-entry-canvas");
-          var ctx = document.getElementById("data-entry-canvas").getContext("2d");
+          var ctx = canvas.getContext("2d");
           var cx = parseInt(canvas.style.width) / 2;
           var cy = parseInt(canvas.style.height) / 2;
           ctx.textAlign = 'center';

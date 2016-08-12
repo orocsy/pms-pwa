@@ -58,31 +58,34 @@
                     var friVal = parseInt(arr[i].Fri);
                     var satVal = parseInt(arr[i].Sat);
                     var sunVal = parseInt(arr[i].Sun);
-                    pmsRxInProgressVm.today = parseInt(arr[i].today);
+                    if(arr[i].today){
+                        pmsRxInProgressVm.today = parseInt(arr[i].today);
+                    }
+
                 }
             }
 
-            pmsRxInProgressVm.data = {
-              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-              datasets: [
-                {
-                  fillColor: '#00aad6',
-                  strokeColor: '#00aad6',
-                  highlightFill: '#00aad6',
-                  highlightStroke: '#00aad6',
-                  data: [monVal, tueVal, wedVal, thuVal, friVal, satVal, sunVal]
-                }
-              ]
-            };
-
             // pmsRxInProgressVm.data = {
             //   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            //   datasets: [{
-            //       label: 'Rx in Progress',
-            //       backgroundColor: "#00aad6",
+            //   datasets: [
+            //     {
+            //       fillColor: '#00aad6',
+            //       strokeColor: '#00aad6',
+            //       highlightFill: '#00aad6',
+            //       highlightStroke: '#00aad6',
             //       data: [monVal, tueVal, wedVal, thuVal, friVal, satVal, sunVal]
-            //   }]
+            //     }
+            //   ]
             // };
+
+            pmsRxInProgressVm.data = {
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              datasets: [{
+                  label: 'Rx in Progress',
+                  backgroundColor: "#00aad6",
+                  data: [monVal, tueVal, wedVal, thuVal, friVal, satVal, sunVal]
+              }]
+            };
 
             var ctx = document.getElementById("rx-inprgs-canvas").getContext("2d");
             var chartObj = new Chart(ctx, {
@@ -95,5 +98,11 @@
         function errorCallback(response) {
             console.log('failed promises');
         }
+        // function isToday() {
+        //
+        //     if(pmsRxInProgressVm.today){
+        //
+        //     }
+        // }
     }
 })();

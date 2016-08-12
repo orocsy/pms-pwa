@@ -77,7 +77,7 @@
                   ],
                       backgroundColor: [
                       "#a9a9a9",
-                      "#2b7baf"
+                      "#e7bb0e"
                   ],
               }],
               labels: [

@@ -12,11 +12,11 @@
 		};
 
 		function getDashboardApi() {
-            // promise = $http({
-		    //   method: 'JSONP',
-		    //   url: 'https://demo6223557.mockable.io/dashboard?callback=JSON_CALLBACK'
-		    // });
-            promise = $http.jsonp('https://demo6223557.mockable.io/dashboard?callback=JSON_CALLBACK');
+            promise = $http({
+		      method: 'GET',
+		      url: 'https://demo0434460.mockable.io/dashboard'
+		    });
+            // promise = $http.jsonp('https://demo6223557.mockable.io/dashboard?callback=JSON_CALLBACK');
 		}
 
 		function getDashboardPromise() {

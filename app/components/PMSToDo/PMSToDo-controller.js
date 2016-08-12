@@ -12,7 +12,7 @@
 
         $http({
 		  method: 'GET',
-		  url: 'https://demo6223557.mockable.io/todo'
+		  url: 'https://demo0434460.mockable.io/todo'
 		}).then(successCallback, errorCallback);
 
 		function successCallback(response) {
