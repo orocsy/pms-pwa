@@ -21,12 +21,8 @@
     <pms-header></pms-header>
     <div ui-view></div>
 
-    <script>
-      if('serviceWorker' in navigator){
-        navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-          console.log(reg);
-        })
-      }
+    <script src="service-worker-registration.js">
+
     </script>
     <!-- 3rd party library -->
     <script src="components/lib/vendor/angular.js"></script>
