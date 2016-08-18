@@ -2,21 +2,14 @@
     'use strict';
     angular
     .module('PMSPickupPreference')
-    .directive('pmsPickupPreference', pmsPickupPreference);
+    .component('pmsPickupPreference', pmsPickupPreference());
 
     function pmsPickupPreference() {
-        var directive = {
+        var component = {
             templateUrl: 'components/PMSPickupPreference/PMSPickupPreference.html',
             controller: 'pmsPickupPreferenceCtrl',
-            controllerAs: 'preferenceVm',
-            restrict: 'E',
-            link : linkFunc
+            controllerAs: 'preferenceVm'
         };
-
-        return directive;
-
-        function linkFunc(scope, elem, attrs) {
-
-        }
+        return component;
     }
 })();

@@ -16,6 +16,7 @@
   "author": "Shiyu Cai",
   "license": "ISC",
   "devDependencies": {
+    "angular": "^1.5.8",
     "gulp": "^3.9.1",
     "gulp-webserver": "^0.9.1",
     "sw-cache": "^0.1.2",

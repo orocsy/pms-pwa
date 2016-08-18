@@ -59,16 +59,6 @@
                 }
             }
 
-            /*pmsDataReviewVm.data = [
-              {
-                value: pie2Value,
-                color: '#a9a9a9',
-              },
-              {
-                value: pie1Value,
-                color:'#e7bb0e',
-              }
-            ];*/
 
             pmsDataReviewVm.data = {
               datasets: [{
