@@ -2,109 +2,82 @@
     'use strict';
 
     angular.module('PMSWidget')
-    .controller('pmsProductReviewCtrl', ['$scope', 'pmsDashboardPageService', pmsProductReviewCtrl]);
+    .controller('pmsProductReviewCtrl', ['$scope', 'PMSPdrService', pmsProductReviewCtrl]);
 
-    function pmsProductReviewCtrl($scope, pmsDashboardPageService) {
+    function pmsProductReviewCtrl($scope, PMSPdrService) {
         var pmsProductReviewVm = this;
-        pmsProductReviewVm.addText = addText;
-        pmsProductReviewVm.options = {
-          responsive: true,
-          onAnimationComplete : pmsProductReviewVm.addText
-        };
-        /*pmsProductReviewVm.options = {
+        // var promise = PMSPdrService.getPdrPromise();
+        // promise.then(successCallback, errorCallback);
+        // function successCallback(response) {
+        // 	var arr = response.data.RXDashboard;
+            Highcharts.chart('PMSPdr',{
+                data: {
+                    table: 'freq',
+                    startRow: 1,
+                    endRow: 17,
+                    endColumn: 7
+                },
 
-          // Sets the chart to be responsive
-          responsive: true,
+                chart: {
+                    polar: true,
+                    type: 'column'
+                },
 
-          //Boolean - Whether we should show a stroke on each segment
-          segmentShowStroke : false,
+                title: {
+                    text: 'Wind rose for South Shore Met Station, Oregon'
+                },
 
-          //String - The colour of each segment stroke
-          segmentStrokeColor : '#fff',
+                subtitle: {
+                    text: 'Source: or.water.usgs.gov'
+                },
 
-          //Number - The width of each segment stroke
-          segmentStrokeWidth : 2,
+                pane: {
+                    size: '85%'
+                },
 
-          //Number - The percentage of the chart that we cut out of the middle
-          percentageInnerCutout : 50, // This is 0 for Pie charts
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'top',
+                    y: 100,
+                    layout: 'vertical'
+                },
 
-          //Number - Amount of animation steps
-          animationSteps : 100,
+                xAxis: {
+                    tickmarkPlacement: 'on'
+                },
 
-          //String - Animation easing effect
-          animationEasing : 'easeOutBounce',
+                yAxis: {
+                    min: 0,
+                    endOnTick: false,
+                    showLastLabel: true,
+                    title: {
+                        text: 'Frequency (%)'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + '%';
+                        }
+                    },
+                    reversedStacks: false
+                },
 
-          //Boolean - Whether we animate the rotation of the Doughnut
-          animateRotate : true,
+                tooltip: {
+                    valueSuffix: '%'
+                },
 
-          //Boolean - Whether we animate scaling the Doughnut from the centre
-          animateScale : false,
-
-          //String - A legend template
-          legendTemplate : ''
-
-        };*/
-        var promise = pmsDashboardPageService.getDashboardPromise();
-        promise.then(successCallback, errorCallback);
-        function successCallback(response) {
-        	var arr = response.data.RXDashboard;
-            for (var i=0; i< arr.length; i++) {
-                if (arr[i].title == 'Assembled') {
-                    var pie1Value = parseInt(arr[i].donetvalue);
-                    var pie2Value = 100-pie1Value;
-                    pmsProductReviewVm.donetLabel = arr[i].donetlable;
-                    pmsProductReviewVm.centerTxt = pie1Value;
+                plotOptions: {
+                    series: {
+                        stacking: 'normal',
+                        shadow: false,
+                        groupPadding: 0,
+                        pointPlacement: 'on'
+                    }
                 }
-            }
-
-            /*pmsProductReviewVm.data = [
-              {
-                value: pie2Value,
-                color: '#a9a9a9',
-              },
-              {
-                value: pie1Value,
-                color:'#2b7baf',
-              }
-            ];*/
-
-            pmsProductReviewVm.data = {
-              datasets: [{
-                  data: [
-                      pie2Value,
-                      pie1Value
-                  ],
-                      backgroundColor: [
-                      "#a9a9a9",
-                      "#2b7baf"
-                  ],
-              }],
-              labels: [
-              ]
-            };
-
-            var ctx = document.getElementById("pr-canvas").getContext("2d");
-            var chartObj = new Chart(ctx, {
-                type: 'doughnut',
-                data: pmsProductReviewVm.data,
-                options: pmsProductReviewVm.options
             });
-            setTimeout(pmsProductReviewVm.addText, 3000);
-        }
+        // }
 
-        function errorCallback(response) {
-
-        }
-        function addText() {
-          var canvas = document.getElementById("pr-canvas");
-          var ctx = document.getElementById("pr-canvas").getContext("2d");
-          var cx = parseInt(canvas.style.width) / 2;
-          var cy = parseInt(canvas.style.height) / 2;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = '25px Arial';
-          ctx.fillStyle = 'black';
-          ctx.fillText(pmsProductReviewVm.centerTxt, cx, cy);
-        }
+        // function errorCallback(response) {
+        //
+        // }
     }
 })();

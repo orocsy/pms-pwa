@@ -18,11 +18,11 @@ gulp.task('generate-service-worker', function(callback) {
         runtimeCaching:[
             {
                 urlPattern:url,
-                handler:'cacheFirst',
+                handler:'fastest',
                 options:{
                     cache:{
                         name:'dynamic1',
-                        maxEntries:4
+                        maxEntries:10
                     }
                 }
             }

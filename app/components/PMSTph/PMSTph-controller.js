@@ -11,6 +11,7 @@
         promise.then(successCallback, errorCallback);
         function successCallback(response) {
         	pmsTphVm.options = response.data.options;
+            console.log(pmsTphVm.options);
              Highcharts.chart('container',pmsTphVm.options);
         }
 
