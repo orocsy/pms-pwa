@@ -83,19 +83,34 @@
         });
 
 
-            function afterSetExtremes(e) {
+        function afterSetExtremes(e) {
 
-                var url,
-                    currentExtremes = this.getExtremes(),
-                    range = e.max - e.min;
+            var url,
+                currentExtremes = this.getExtremes(),
+                range = e.max - e.min;
 
-                chart.showLoading('Loading data from server...');
-                PMSClkService.getAfterExtreme().then(function (response) {
-                    chart.series[0].setData(response);
-                    chart.hideLoading();
-                });
+            chart.showLoading('Loading data from server...');
+            $.getJSON('http://www.highcharts.com/samples/data/from-sql.php?start='+ Math.round(e.min) +
+                '&end='+ Math.round(e.max) +'&callback=?', function(data) {
 
-            }
+                chart.series[0].setData(data);
+                chart.hideLoading();
+            });
+
+        }
+            // function afterSetExtremes(e) {
+            //
+            //     var url,
+            //         currentExtremes = this.getExtremes(),
+            //         range = e.max - e.min;
+            //
+            //     chart.showLoading('Loading data from server...');
+            //     PMSClkService.getAfterExtreme().then(function (response) {
+            //         chart.series[0].setData(response);
+            //         chart.hideLoading();
+            //     });
+            //
+            // }
 
 
 
