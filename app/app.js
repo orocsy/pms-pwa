@@ -18,7 +18,8 @@
 		'PMSWidget',
 		'PMSPickupPreference',
 		'ui.router',
-		'tc.chartjs'
+		'tc.chartjs',
+		'ngResource'
 	])
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/');

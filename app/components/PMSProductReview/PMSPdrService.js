@@ -9,10 +9,10 @@
 
     function PMSPdrService($http) {
         function getPdrPromise() {
-            return $http({
-                method:'GET',
-                url:''
-            });
+            // return $http({
+            //     method:'GET',
+            //     url:'/'
+            // });
 
         }
 
