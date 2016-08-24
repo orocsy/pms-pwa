@@ -11,7 +11,7 @@
         promise.then(successCallback, errorCallback);
         function successCallback(response) {
             pmsConsultationVm.cstData = response.data.cstData;
-            console.log(pmsConsultationVm.cstData.series);
+            // console.log(pmsConsultationVm.cstData.series);
             Highcharts.chart('PMSConsChart',{
                 chart: {
                     type: 'area'
