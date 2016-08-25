@@ -10,9 +10,6 @@
     function PMSClkService($http,$q) {
         function getClkPromise() {
              $http.jsonp('http://www.highcharts.com/samples/data/from-sql.php?callback=successCallback');
-            // window.chartCb = function (data) {
-            //     console.log(data);
-            // }
             // var url = 'http://www.highcharts.com/samples/data/from-sql.php?callback=JSON_CALLBACK';
             //  return $resource(url,{callback:"JSON_CALLBACK"},{getClkData:{method:'JSONP'}});
 

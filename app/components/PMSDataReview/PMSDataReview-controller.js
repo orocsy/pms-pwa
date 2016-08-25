@@ -2,102 +2,63 @@
     'use strict';
 
     angular.module('PMSWidget')
-    .controller('pmsDataReviewCtrl', ['$scope', 'pmsDashboardPageService', pmsDataReviewCtrl]);
+    .controller('pmsDataReviewCtrl', ['$scope', 'PMSDrService', pmsDataReviewCtrl]);
 
-    function pmsDataReviewCtrl($scope, pmsDashboardPageService) {
+    function pmsDataReviewCtrl($scope, PMSDrService) {
         var pmsDataReviewVm = this;
-        pmsDataReviewVm.addText = addText;
-        pmsDataReviewVm.options = {
-          responsive: true,
-          onAnimationComplete : pmsDataReviewVm.addText
-        };
-        /*pmsDataReviewVm.options = {
 
-          // Sets the chart to be responsive
-          responsive: true,
-
-          //Boolean - Whether we should show a stroke on each segment
-          segmentShowStroke : false,
-
-          //String - The colour of each segment stroke
-          segmentStrokeColor : '#fff',
-
-          //Number - The width of each segment stroke
-          segmentStrokeWidth : 2,
-
-          //Number - The percentage of the chart that we cut out of the middle
-          percentageInnerCutout : 50, // This is 0 for Pie charts
-
-          //Number - Amount of animation steps
-          animationSteps : 100,
-
-          //String - Animation easing effect
-          animationEasing : 'easeOutBounce',
-
-          //Boolean - Whether we animate the rotation of the Doughnut
-          animateRotate : true,
-
-          //Boolean - Whether we animate scaling the Doughnut from the centre
-          animateScale : false,
-
-          //String - A legend template
-          legendTemplate : '',
-
-          showTooltips : true
-
-        };*/
-        var promise = pmsDashboardPageService.getDashboardPromise();
+        var promise = PMSDrService.getDrPromise();
         promise.then(successCallback, errorCallback);
         function successCallback(response) {
-            var arr = response.data.RXDashboard;
-            for (var i=0; i< arr.length; i++) {
-                if (arr[i].title == 'Data Review') {
-                    var pie1Value = parseInt(arr[i].donetvalue);
-                    var pie2Value = 100-pie1Value;
-                    pmsDataReviewVm.donetLabel = arr[i].donetlable;
-                    pmsDataReviewVm.centerTxt = pie1Value;
-                }
-            }
+            console.log(response);
+            Highcharts.chart('PMSDr',{
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Browser market shares. January, 2015 to May, 2015'
+                },
+                subtitle: {
+                    text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total percent market share'
+                    }
 
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}%'
+                        }
+                    }
+                },
 
-            pmsDataReviewVm.data = {
-              datasets: [{
-                  data: [
-                      pie2Value,
-                      pie1Value
-                  ],
-                  backgroundColor: [
-                      "#a9a9a9",
-                      "#e7bb0e"
-                  ]
-              }],
-              labels: [
-              ]
-            };
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                },
 
-            var ctx = document.getElementById("data-review-canvas").getContext("2d");
-            var chartObj = new Chart(ctx, {
-                type: 'doughnut',
-                data: pmsDataReviewVm.data,
-                options: pmsDataReviewVm.options
+                series: response.data.series,
+                drilldown: response.data.drilldown
             });
-            setTimeout(pmsDataReviewVm.addText, 3000);
+
+
+
         }
 
         function errorCallback(response) {
 
         }
 
-        function addText() {
-          var canvas = document.getElementById("data-review-canvas");
-          var ctx = document.getElementById("data-review-canvas").getContext("2d");
-          var cx = parseInt(canvas.style.width) / 2;
-          var cy = parseInt(canvas.style.height) / 2;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = '25px Arial';
-          ctx.fillStyle = 'black';
-          ctx.fillText(pmsDataReviewVm.centerTxt, cx, cy);
-        }
     }
 })();
