@@ -2,111 +2,186 @@
     'use strict';
 
     angular.module('PMSWidget')
-    .controller('pmsClinicalCheckCtrl', ['$scope', 'pmsDashboardPageService', pmsClinicalCheckCtrl]);
+    .controller('pmsClinicalCheckCtrl', ['PMSClkService', pmsClinicalCheckCtrl]);
 
-    function pmsClinicalCheckCtrl($scope, pmsDashboardPageService) {
+    function pmsClinicalCheckCtrl(PMSClkService) {
         var pmsClinicalCheckVm = this;
-        pmsClinicalCheckVm.addText = addText;
-        pmsClinicalCheckVm.options = {
-          responsive: true,
-          onAnimationComplete : pmsClinicalCheckVm.addText
-        };
-        /*pmsClinicalCheckVm.options = {
+        var chart;
+        // var promise = PMSClkService.getClkPromise();
+        PMSClkService.getClkPromise();
+        // var promise = PMSClkService.getClkPromise().getClkData().$promise;
+        // promise.then(successCallback, errorCallback);
+        window.successCallback = function (data) {
+            data = [].concat(data, [[Date.UTC(2011, 9, 14, 19, 59), null, null, null, null]]);
 
-          // Sets the chart to be responsive
-          responsive: true,
+            // create the chart
+            chart = new Highcharts.StockChart({
+                chart : {
+                    renderTo : 'PMSClk',
+                    type: 'candlestick',
+                    zoomType: 'x'
+                },
 
-          //Boolean - Whether we should show a stroke on each segment
-          segmentShowStroke : false,
+                navigator : {
+                    adaptToUpdatedData: false,
+                    series : {
+                        data : data
+                    }
+                },
 
-          //String - The colour of each segment stroke
-          segmentStrokeColor : '#fff',
+                title: {
+                    text: 'AAPL history by the minute from 1998 to 2011'
+                },
 
-          //Number - The width of each segment stroke
-          segmentStrokeWidth : 2,
+                subtitle: {
+                    text: 'Displaying 1.7 million data points in Highcharts Stock by async server loading'
+                },
 
-          //Number - The percentage of the chart that we cut out of the middle
-          percentageInnerCutout : 50, // This is 0 for Pie charts
+                rangeSelector : {
+                    buttons: [{
+                        type: 'hour',
+                        count: 1,
+                        text: '1h'
+                    }, {
+                        type: 'day',
+                        count: 1,
+                        text: '1d'
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1y'
+                    }, {
+                        type: 'all',
+                        text: 'All'
+                    }],
+                    inputEnabled: false, // it supports only days
+                    selected : 4 // all
+                },
 
-          //Number - Amount of animation steps
-          animationSteps : 100,
+                xAxis : {
+                    events : {
+                        afterSetExtremes : afterSetExtremes
+                    },
+                    minRange: 3600 * 1000 // one hour
+                },
 
-          //String - Animation easing effect
-          animationEasing : 'easeOutBounce',
+                series : [{
+                    data : data,
+                    dataGrouping: {
+                        enabled: false
+                    }
+                }]
+            });
+    }
 
-          //Boolean - Whether we animate the rotation of the Doughnut
-          animateRotate : true,
+        // $.getJSON('http://www.highcharts.com/samples/data/from-sql.php?callback=?', function(data) {
 
-          //Boolean - Whether we animate scaling the Doughnut from the centre
-          animateScale : false,
+            // Add a null value for the end date
+            // data = [].concat(data, [[Date.UTC(2011, 9, 14, 19, 59), null, null, null, null]]);
+            //
+            // // create the chart
+            // chart = new Highcharts.StockChart({
+            //     chart : {
+            //         renderTo : 'PMSClk',
+            //         type: 'candlestick',
+            //         zoomType: 'x'
+            //     },
+            //
+            //     navigator : {
+            //         adaptToUpdatedData: false,
+            //         series : {
+            //             data : data
+            //         }
+            //     },
+            //
+            //     title: {
+            //         text: 'AAPL history by the minute from 1998 to 2011'
+            //     },
+            //
+            //     subtitle: {
+            //         text: 'Displaying 1.7 million data points in Highcharts Stock by async server loading'
+            //     },
+            //
+            //     rangeSelector : {
+            //         buttons: [{
+            //             type: 'hour',
+            //             count: 1,
+            //             text: '1h'
+            //         }, {
+            //             type: 'day',
+            //             count: 1,
+            //             text: '1d'
+            //         }, {
+            //             type: 'month',
+            //             count: 1,
+            //             text: '1m'
+            //         }, {
+            //             type: 'year',
+            //             count: 1,
+            //             text: '1y'
+            //         }, {
+            //             type: 'all',
+            //             text: 'All'
+            //         }],
+            //         inputEnabled: false, // it supports only days
+            //         selected : 4 // all
+            //     },
+            //
+            //     xAxis : {
+            //         events : {
+            //             afterSetExtremes : afterSetExtremes
+            //         },
+            //         minRange: 3600 * 1000 // one hour
+            //     },
+            //
+            //     series : [{
+            //         data : data,
+            //         dataGrouping: {
+            //             enabled: false
+            //         }
+            //     }]
+            // });
+        // });
 
-          //String - A legend template
-          legendTemplate : ''
 
-        };*/
+        // function afterSetExtremes(e) {
+        //
+        //     var url,
+        //         currentExtremes = this.getExtremes(),
+        //         range = e.max - e.min;
+        //
+        //     chart.showLoading('Loading data from server...');
+        //     $.getJSON('http://www.highcharts.com/samples/data/from-sql.php?start='+ Math.round(e.min) +
+        //         '&end='+ Math.round(e.max) +'&callback=?', function(data) {
+        //
+        //         chart.series[0].setData(data);
+        //         chart.hideLoading();
+        //     });
+        //
+        // }
+            function afterSetExtremes(e) {
 
-        var promise = pmsDashboardPageService.getDashboardPromise();
-        promise.then(successCallback, errorCallback);
-        function successCallback(response) {
-        	var arr = response.data.RXDashboard;
-            for (var i=0; i< arr.length; i++) {
-                if (arr[i].title == 'Clinical Check') {
-                    var pie1Value = parseInt(arr[i].donetvalue);
-                    var pie2Value = 100-pie1Value;
-                    pmsClinicalCheckVm.donetLabel = arr[i].donetlable;
-                    pmsClinicalCheckVm.centerTxt = pie1Value;
+                var url,
+                    currentExtremes = this.getExtremes(),
+                    range = e.max - e.min;
+
+                chart.showLoading('Loading data from server...');
+                PMSClkService.getAfterExtreme(e);
+                window.afterExtremeCb = function (response) {
+                    chart.series[0].setData(response);
+                    chart.hideLoading();
                 }
+
             }
 
-            /*pmsClinicalCheckVm.data = [
-              {
-                value: pie2Value,
-                color: '#a9a9a9',
-              },
-              {
-                value: pie1Value,
-                color:'#2b7baf',
-              }
-            ];*/
 
-            pmsClinicalCheckVm.data = {
-              datasets: [{
-                  data: [
-                      pie2Value,
-                      pie1Value
-                  ],
-                      backgroundColor: [
-                      "#a9a9a9",
-                      "#e7bb0e"
-                  ],
-              }],
-              labels: [
-              ]
-            };
-
-            var ctx = document.getElementById("cc-canvas").getContext("2d");
-            var chartObj = new Chart(ctx, {
-                type: 'doughnut',
-                data: pmsClinicalCheckVm.data,
-                options: pmsClinicalCheckVm.options
-            });
-            pmsClinicalCheckVm.addText();
-        }
 
         function errorCallback(response) {
-
-        }
-
-        function addText() {
-          var canvas = document.getElementById("cc-canvas");
-          var ctx = document.getElementById("cc-canvas").getContext("2d");
-          var cx = parseInt(canvas.style.width) / 2;
-          var cy = parseInt(canvas.style.height) / 2;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = '25px Arial';
-          ctx.fillStyle = 'black';
-          ctx.fillText(pmsClinicalCheckVm.centerTxt, cx, cy);
+            console.log(response);
         }
     }
 })();

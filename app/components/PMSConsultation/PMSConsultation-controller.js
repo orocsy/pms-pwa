@@ -2,109 +2,70 @@
     'use strict';
 
     angular.module('PMSWidget')
-    .controller('pmsConsultationCtrl', ['$scope', 'pmsDashboardPageService', pmsConsultationCtrl]);
+    .controller('pmsConsultationCtrl', ['pmsConsultationService', pmsConsultationCtrl]);
 
-    function pmsConsultationCtrl($scope, pmsDashboardPageService) {
+    function pmsConsultationCtrl(pmsConsultationService) {
         var pmsConsultationVm = this;
-        pmsConsultationVm.addText = addText;
-        pmsConsultationVm.options = {
-          responsive: true,
-          onAnimationComplete : pmsConsultationVm.addText
-        };
-        /*pmsConsultationVm.options = {
 
-          // Sets the chart to be responsive
-          responsive: true,
-
-          //Boolean - Whether we should show a stroke on each segment
-          segmentShowStroke : false,
-
-          //String - The colour of each segment stroke
-          segmentStrokeColor : '#fff',
-
-          //Number - The width of each segment stroke
-          segmentStrokeWidth : 2,
-
-          //Number - The percentage of the chart that we cut out of the middle
-          percentageInnerCutout : 50, // This is 0 for Pie charts
-
-          //Number - Amount of animation steps
-          animationSteps : 100,
-
-          //String - Animation easing effect
-          animationEasing : 'easeOutBounce',
-
-          //Boolean - Whether we animate the rotation of the Doughnut
-          animateRotate : true,
-
-          //Boolean - Whether we animate scaling the Doughnut from the centre
-          animateScale : false,
-
-          //String - A legend template
-          legendTemplate : ''
-
-        };*/
-        var promise = pmsDashboardPageService.getDashboardPromise();
+        var promise = pmsConsultationService.getCstPromise();
         promise.then(successCallback, errorCallback);
         function successCallback(response) {
-        	var arr = response.data.RXDashboard;
-            for (var i=0; i< arr.length; i++) {
-                if (arr[i].title == 'Consultation') {
-                    var pie1Value = parseInt(arr[i].donetvalue);
-                    var pie2Value = 100-pie1Value;
-                    pmsConsultationVm.donetLabel = arr[i].donetlable;
-                    pmsConsultationVm.centerTxt = pie1Value;
-                }
-            }
+            pmsConsultationVm.cstData = response.data.cstData;
+            // console.log(pmsConsultationVm.cstData.series);
+            Highcharts.chart('PMSConsChart',{
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'US and USSR nuclear stockpiles'
+                },
+                subtitle: {
+                    text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
+                    'thebulletin.metapress.com</a>'
+                },
 
-            /*pmsConsultationVm.data = [
-              {
-                value: pie2Value,
-                color: '#a9a9a9',
-              },
-              {
-                value: pie1Value,
-                color:'#2b7baf',
-              }
-            ];*/
-
-            pmsConsultationVm.data = {
-              datasets: [{
-                  data: [
-                      pie2Value,
-                      pie1Value
-                  ],
-                      backgroundColor: [
-                      "#a9a9a9",
-                      "#2b7baf"
-                  ],
-              }],
-              labels: [
-              ]
-            };
-
-            var ctx = document.getElementById("consultation-canvas").getContext("2d");
-            var chartObj = new Chart(ctx, {
-                type: 'doughnut',
-                data: pmsConsultationVm.data,
-                options: pmsConsultationVm.options
+                xAxis: {
+                    allowDecimals: false,
+                    labels: {
+                        formatter: function () {
+                            return this.value; // clean, unformatted number for year
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nuclear weapon states'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 1000 + 'k';
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: 1940,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series:pmsConsultationVm.cstData.series
             });
-            setTimeout(pmsConsultationVm.addText, 3000);
         }
 
         function errorCallback(response) {
 
-        }
-        function addText() {
-          var canvas = document.getElementById("consultation-canvas");
-          var ctx = document.getElementById("consultation-canvas").getContext("2d");
-          var cx = parseInt(canvas.style.width) / 2;
-          var cy = parseInt(canvas.style.height) / 2;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = '25px Arial';
-          ctx.fillStyle = 'black';
-          ctx.fillText(pmsConsultationVm.centerTxt, cx, cy);
         }
     }
 })();

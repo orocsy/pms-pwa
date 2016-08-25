@@ -8,7 +8,7 @@
         var component = {
             templateUrl: 'components/PMSTph/PMSTph.html',
             controller: 'pmsTphCtrl',
-            controllerAs: 'pmsTphVm'
+            controllerAs: 'pmsTphVm',
         };
 
         return component;
