@@ -40,7 +40,7 @@
                 series:[
                     {
                         name:'Brands',
-                        data:pieData,
+                        data:pieData
 
                     }
                 ],
